@@ -1,7 +1,8 @@
 import { Page, expect, Locator } from "@playwright/test";
 
-export abstract class BasePage{
-    protected readonly page: Page;
+export class BasePage{
+    
+    readonly page: Page;
 
     constructor(page: Page){
         this.page = page;   
