@@ -5,7 +5,7 @@ test.beforeEach(async({page}) => {
     await page.goto('http://www.uitestingplayground.com/')
 })
 
-test('navigate to class attribute page, click on blue button, accept alert and assert that it uses btn-primary class', async({page}) => {
+test('navigate to class attribute page, click on blue button with btn-primary class', async({page}) => {
     const pm = new PageManager(page);
     await pm.onHomePage().navigateToClassAttributePage();
     await expect(page.getByText('Class attribute of an element may contain more than one class reference. E.g. ')).toBeVisible();
