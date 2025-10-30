@@ -1,7 +1,6 @@
 import { Page, expect, Locator } from "@playwright/test";
 import { BasePage } from "./basePage";
 
-
 export class DynamicPage extends BasePage{
 
     constructor(page: Page){

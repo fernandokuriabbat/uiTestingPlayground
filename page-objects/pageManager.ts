@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { DynamicPage } from "./dynamicPage";
 import { HomePage } from "./homePage";
 import { TextInputPage } from "./textInputPage";
+import { ClassAttribute } from "./classAttribute";
 
 
 export class PageManager{
@@ -10,6 +11,7 @@ export class PageManager{
     private readonly dynamicPage: DynamicPage;
     private readonly homePage: HomePage;
     private readonly textInputPage: TextInputPage;
+    private readonly classAttributePage: ClassAttribute;
 
 
     constructor(page:Page){
@@ -17,6 +19,7 @@ export class PageManager{
         this.dynamicPage = new DynamicPage(this.page);
         this.homePage = new HomePage(this.page);
         this.textInputPage = new TextInputPage(this.page);
+        this.classAttributePage = new ClassAttribute(this.page); 
     }
 
     onDynamicPage(){
@@ -29,6 +32,10 @@ export class PageManager{
 
     onTextInputPage(){
         return this.textInputPage
+    }
+
+    onClassAttributePage(){
+        return this.classAttributePage
     }
 
 

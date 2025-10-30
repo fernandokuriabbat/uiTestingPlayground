@@ -8,8 +8,12 @@ export class HomePage extends BasePage{
         super(page);
     }
 
-    async clickOnDynamicIdPage(){
+    async navigateToDynamicIdPage(){
         await this.selectPageTitleLink('Dynamic ID');
+    }
+
+     async navigateToClassAttributePage(){
+        await this.selectPageTitleLink('Class Attribute');
     }
 
     private async selectPageTitleLink(name: string){
