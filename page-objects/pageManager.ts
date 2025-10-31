@@ -3,6 +3,8 @@ import { DynamicPage } from "./dynamicPage";
 import { HomePage } from "./homePage";
 import { TextInputPage } from "./textInputPage";
 import { ClassAttribute } from "./classAttribute";
+import { HiddenLayersPage } from "./hiddenLayersPage";
+import { LoadDelayPage } from "./loadDelayPage";
 
 
 export class PageManager{
@@ -12,6 +14,8 @@ export class PageManager{
     private readonly homePage: HomePage;
     private readonly textInputPage: TextInputPage;
     private readonly classAttributePage: ClassAttribute;
+    private readonly hiddenLayersPage: HiddenLayersPage; 
+    private readonly loadDelayPage: LoadDelayPage; 
 
 
     constructor(page:Page){
@@ -20,6 +24,8 @@ export class PageManager{
         this.homePage = new HomePage(this.page);
         this.textInputPage = new TextInputPage(this.page);
         this.classAttributePage = new ClassAttribute(this.page); 
+        this.hiddenLayersPage = new HiddenLayersPage(this.page); 
+        this.loadDelayPage = new LoadDelayPage(this.page); 
     }
 
     onDynamicPage(){
@@ -38,6 +44,12 @@ export class PageManager{
         return this.classAttributePage
     }
 
+    onHiddenLayersPage(){
+        return this.hiddenLayersPage
+    }
 
+    onLoadDelayPage(){
+        return this.loadDelayPage
+    }
 
 }

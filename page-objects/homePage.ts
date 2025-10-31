@@ -1,4 +1,4 @@
-import { Page, expect, Locator } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 
@@ -14,6 +14,14 @@ export class HomePage extends BasePage{
 
      async navigateToClassAttributePage(){
         await this.selectPageTitleLink('Class Attribute');
+    }
+
+    async navigateToHiddenLayersPage(){
+        await this.selectPageTitleLink('Hidden Layers');
+    }
+
+    async navigateToLoadDelayPage(){
+        await this.selectPageTitleLink('Load Delay');
     }
 
     private async selectPageTitleLink(name: string){
