@@ -24,6 +24,18 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Load Delay');
     }
 
+    async navigateToAjaxDataPage(){
+        await this.selectPageTitleLink('AJAX Data');
+    }
+
+     async navigateToClientSideDelayPage(){
+        await this.selectPageTitleLink('Client Side Delay');
+    }
+
+    async navigateToClickPage(){
+        await this.selectPageTitleLink('Click');
+    }
+
     private async selectPageTitleLink(name: string){
         const pageTitleText = this.page.getByRole('link', {name}).click();
     }

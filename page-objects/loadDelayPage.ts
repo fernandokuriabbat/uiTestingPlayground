@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 export class LoadDelayPage extends BasePage{
@@ -8,7 +8,9 @@ export class LoadDelayPage extends BasePage{
     }
 
     async clickOnButtonAfterDelay(){
-        await this.page.getByRole('button', {name: 'Button Appearing After Delay'}).click(); 
+        const blueBotton = this.page.getByRole('button', {name: 'Button Appearing After Delay'});
+        await expect(blueBotton).toBeVisible();
+        await blueBotton.click(); 
     }
     
 

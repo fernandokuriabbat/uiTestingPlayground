@@ -5,6 +5,9 @@ import { TextInputPage } from "./textInputPage";
 import { ClassAttribute } from "./classAttribute";
 import { HiddenLayersPage } from "./hiddenLayersPage";
 import { LoadDelayPage } from "./loadDelayPage";
+import { AjaxDataPage } from "./ajaxDataPage";  
+import { ClientSideDelayPage } from "./clientSideDelayPage";
+import { ClickPage } from "./clickPage";
 
 
 export class PageManager{
@@ -16,6 +19,9 @@ export class PageManager{
     private readonly classAttributePage: ClassAttribute;
     private readonly hiddenLayersPage: HiddenLayersPage; 
     private readonly loadDelayPage: LoadDelayPage; 
+    private readonly ajaxDataPage: AjaxDataPage;
+    private readonly clientSideDelayPage: ClientSideDelayPage;    
+    private readonly clickPage: ClickPage;  
 
 
     constructor(page:Page){
@@ -26,6 +32,9 @@ export class PageManager{
         this.classAttributePage = new ClassAttribute(this.page); 
         this.hiddenLayersPage = new HiddenLayersPage(this.page); 
         this.loadDelayPage = new LoadDelayPage(this.page); 
+        this.ajaxDataPage = new AjaxDataPage(this.page); 
+        this.clientSideDelayPage = new ClientSideDelayPage(this.page); 
+        this.clickPage = new ClickPage(this.page); 
     }
 
     onDynamicPage(){
@@ -50,6 +59,18 @@ export class PageManager{
 
     onLoadDelayPage(){
         return this.loadDelayPage
+    }
+
+    onAjaxPage(){
+        return this.ajaxDataPage
+    }
+
+    onClientSideDelayPage(){
+        return this.clientSideDelayPage
+    }
+
+    onClickPage(){
+        return this.clickPage
     }
 
 }
