@@ -1,16 +1,18 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Page, Locator } from "@playwright/test";
 import { BasePage } from "./basePage";
 
 export class LoadDelayPage extends BasePage{
 
+    private readonly blueButton: Locator;
+
     constructor(page: Page){
         super(page);
+        this.blueButton = this.page.getByRole('button', {name: 'Button Appearing After Delay'});
     }
 
     async clickOnButtonAfterDelay(){
-        const blueBotton = this.page.getByRole('button', {name: 'Button Appearing After Delay'});
-        await expect(blueBotton).toBeVisible();
-        await blueBotton.click(); 
+        await expect(this.blueButton).toBeVisible();
+        await this.blueButton.click(); 
     }
     
 

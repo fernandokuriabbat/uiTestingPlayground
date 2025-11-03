@@ -36,6 +36,14 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Click');
     }
 
+    async navigateToTextInputPage(){
+        await this.selectPageTitleLink('Text Input');
+    }
+
+    async navigateToScrollbarsPage(){
+        await this.selectPageTitleLink('Scrollbars');
+    }
+
     private async selectPageTitleLink(name: string){
         const pageTitleText = this.page.getByRole('link', {name}).click();
     }

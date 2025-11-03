@@ -1,13 +1,14 @@
 import { Page } from "@playwright/test";
 import { DynamicPage } from "./dynamicPage";
 import { HomePage } from "./homePage";
-import { TextInputPage } from "./textInputPage";
 import { ClassAttribute } from "./classAttribute";
 import { HiddenLayersPage } from "./hiddenLayersPage";
 import { LoadDelayPage } from "./loadDelayPage";
 import { AjaxDataPage } from "./ajaxDataPage";  
 import { ClientSideDelayPage } from "./clientSideDelayPage";
 import { ClickPage } from "./clickPage";
+import { TextInputPage } from "./textInputPage";    
+import { ScrollbarsPage } from "./scrollbarsPage";
 
 
 export class PageManager{
@@ -15,13 +16,14 @@ export class PageManager{
     private readonly page: Page;
     private readonly dynamicPage: DynamicPage;
     private readonly homePage: HomePage;
-    private readonly textInputPage: TextInputPage;
     private readonly classAttributePage: ClassAttribute;
     private readonly hiddenLayersPage: HiddenLayersPage; 
     private readonly loadDelayPage: LoadDelayPage; 
     private readonly ajaxDataPage: AjaxDataPage;
     private readonly clientSideDelayPage: ClientSideDelayPage;    
     private readonly clickPage: ClickPage;  
+    private readonly textInputPage: TextInputPage;
+    private readonly scrollbarsPage: ScrollbarsPage;
 
 
     constructor(page:Page){
@@ -34,7 +36,9 @@ export class PageManager{
         this.loadDelayPage = new LoadDelayPage(this.page); 
         this.ajaxDataPage = new AjaxDataPage(this.page); 
         this.clientSideDelayPage = new ClientSideDelayPage(this.page); 
-        this.clickPage = new ClickPage(this.page); 
+        this.clickPage = new ClickPage(this.page);
+        this.textInputPage = new TextInputPage(this.page); 
+        this.scrollbarsPage = new ScrollbarsPage(this.page);
     }
 
     onDynamicPage(){
@@ -43,10 +47,6 @@ export class PageManager{
 
     onHomePage(){
         return this.homePage
-    }
-
-    onTextInputPage(){
-        return this.textInputPage
     }
 
     onClassAttributePage(){
@@ -71,6 +71,14 @@ export class PageManager{
 
     onClickPage(){
         return this.clickPage
+    }
+
+    onTextInputPage(){
+        return this.textInputPage
+    }
+
+    onScrollbarsPage(){
+        return this.scrollbarsPage
     }
 
 }
