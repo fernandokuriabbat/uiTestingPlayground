@@ -9,7 +9,7 @@ test ('navigate to dynamic ID page and click on button with dynamic ID', async (
     const pm = new PageManager(page);
     await pm.onHomePage().navigateToDynamicIdPage();
     await page.waitForURL(/\/dynamicid$/);
-    await pm.onDynamicPage().clickOnButtonWithDynamicId();  
+    await pm.onDynamicIdPage().clickOnButtonWithDynamicId();  
 })
 
 test('navigate to class attribute page, click on blue button with btn-primary class', async({page}) => {
@@ -68,4 +68,12 @@ test('navigate to scrollbars page, scroll button into view and click', async ({p
     await pm.onHomePage().navigateToScrollbarsPage(); 
     await page.waitForURL(/\/scrollbars$/);
     await pm.onScrollbarsPage().scrollButtonIntoViewAndClick(); 
+})
+
+
+test('navigate to dynamic table page, get chrome cpu load value and compare it with the yellow label', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToDynamicTablePage();
+    await page.waitForURL(/\/dynamictable$/);
+    await pm.onDynamicTablePage().getChromeCPULoadValueAndCompareWithYellowLabel();
 })

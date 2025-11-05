@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { DynamicPage } from "./dynamicPage";
+import { DynamicIdPage } from "./dynamicIdPage";
 import { HomePage } from "./homePage";
 import { ClassAttribute } from "./classAttribute";
 import { HiddenLayersPage } from "./hiddenLayersPage";
@@ -9,12 +9,14 @@ import { ClientSideDelayPage } from "./clientSideDelayPage";
 import { ClickPage } from "./clickPage";
 import { TextInputPage } from "./textInputPage";    
 import { ScrollbarsPage } from "./scrollbarsPage";
+import { DynamicTablePage } from "./dynamicTablePage";
+import { VerifyTextPage } from "./verifyTextPage";
 
 
 export class PageManager{
 
     private readonly page: Page;
-    private readonly dynamicPage: DynamicPage;
+    private readonly dynamicPage: DynamicIdPage;
     private readonly homePage: HomePage;
     private readonly classAttributePage: ClassAttribute;
     private readonly hiddenLayersPage: HiddenLayersPage; 
@@ -24,11 +26,13 @@ export class PageManager{
     private readonly clickPage: ClickPage;  
     private readonly textInputPage: TextInputPage;
     private readonly scrollbarsPage: ScrollbarsPage;
+    private readonly dynamicTablePage: DynamicTablePage;
+    private readonly verifyTextPage: VerifyTextPage;
 
 
     constructor(page:Page){
         this.page = page;
-        this.dynamicPage = new DynamicPage(this.page);
+        this.dynamicPage = new DynamicIdPage(this.page);
         this.homePage = new HomePage(this.page);
         this.textInputPage = new TextInputPage(this.page);
         this.classAttributePage = new ClassAttribute(this.page); 
@@ -39,9 +43,11 @@ export class PageManager{
         this.clickPage = new ClickPage(this.page);
         this.textInputPage = new TextInputPage(this.page); 
         this.scrollbarsPage = new ScrollbarsPage(this.page);
+        this.dynamicTablePage = new DynamicTablePage(this.page);
+        this.verifyTextPage = new VerifyTextPage(this.page); 
     }
 
-    onDynamicPage(){
+    onDynamicIdPage(){
         return this.dynamicPage
     }
 
@@ -79,6 +85,14 @@ export class PageManager{
 
     onScrollbarsPage(){
         return this.scrollbarsPage
+    }
+
+    onDynamicTablePage(){
+        return this.dynamicTablePage
+    }
+
+    onVerifyTablePage(){
+        return this.verifyTextPage
     }
 
 }

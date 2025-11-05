@@ -44,6 +44,14 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Scrollbars');
     }
 
+    async navigateToDynamicTablePage(){
+        await this.selectPageTitleLink('Dynamic Table');
+    }
+
+    async navigateToVerifyTextPage(){
+        await this.selectPageTitleLink('Verify Text');
+    }
+
     private async selectPageTitleLink(name: string){
         const pageTitleText = this.page.getByRole('link', {name}).click();
     }
