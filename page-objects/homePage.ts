@@ -52,6 +52,14 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Verify Text');
     }
 
+    async navigateToProgressBarPage(){
+        await this.selectPageTitleLink('Progress Bar');
+    }
+
+    async navigateToVisibilityPage(){
+        await this.selectPageTitleLink('Visibility');
+    }
+
     private async selectPageTitleLink(name: string){
         const pageTitleText = this.page.getByRole('link', {name}).click();
     }

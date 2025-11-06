@@ -77,3 +77,24 @@ test('navigate to dynamic table page, get chrome cpu load value and compare it w
     await page.waitForURL(/\/dynamictable$/);
     await pm.onDynamicTablePage().getChromeCPULoadValueAndCompareWithYellowLabel();
 })
+
+test('navigate to verify text page, and find an element that contains Welcome UserName! text', async ({page})  => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToVerifyTextPage();
+    await page.waitForURL(/\/verifytext$/);
+    await pm.onVerifyTablePage().findElementWithWelcomeText();
+})
+
+test('navigate to progress bar page, click on start and stop once progress bar is at 75 percent', async ({page})  => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToProgressBarPage();
+    await page.waitForURL(/\/progressbar$/);
+    await pm.onProgressBarPage().clickOnStartButtonAndStopItOnceBarIsAt75Percent(); 
+})
+
+test('navigate to visibility page, click on hide button and verify that other buttons are not visible', async ({page})  => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToVisibilityPage();
+    await page.waitForURL(/\/visibility$/);
+    await pm.onVisibilityPage().pressHideButtonAndAssertThatOtherButtonsAreNotVisible(); 
+})

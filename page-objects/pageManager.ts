@@ -11,6 +11,8 @@ import { TextInputPage } from "./textInputPage";
 import { ScrollbarsPage } from "./scrollbarsPage";
 import { DynamicTablePage } from "./dynamicTablePage";
 import { VerifyTextPage } from "./verifyTextPage";
+import { ProgressBarPage } from "./progressBar";
+import { VisibilityPage } from "./visibilityPage";
 
 
 export class PageManager{
@@ -28,6 +30,8 @@ export class PageManager{
     private readonly scrollbarsPage: ScrollbarsPage;
     private readonly dynamicTablePage: DynamicTablePage;
     private readonly verifyTextPage: VerifyTextPage;
+    private readonly progressBarPage: ProgressBarPage;
+    private readonly visibilityPage: VisibilityPage; 
 
 
     constructor(page:Page){
@@ -45,54 +49,64 @@ export class PageManager{
         this.scrollbarsPage = new ScrollbarsPage(this.page);
         this.dynamicTablePage = new DynamicTablePage(this.page);
         this.verifyTextPage = new VerifyTextPage(this.page); 
+        this.progressBarPage = new ProgressBarPage(this.page);
+        this.visibilityPage = new VisibilityPage(this.page); 
     }
 
     onDynamicIdPage(){
-        return this.dynamicPage
+        return this.dynamicPage;
     }
 
     onHomePage(){
-        return this.homePage
+        return this.homePage;
     }
 
     onClassAttributePage(){
-        return this.classAttributePage
+        return this.classAttributePage;
     }
 
     onHiddenLayersPage(){
-        return this.hiddenLayersPage
+        return this.hiddenLayersPage;
     }
 
     onLoadDelayPage(){
-        return this.loadDelayPage
+        return this.loadDelayPage;
     }
 
     onAjaxPage(){
-        return this.ajaxDataPage
+        return this.ajaxDataPage;
     }
 
     onClientSideDelayPage(){
-        return this.clientSideDelayPage
+        return this.clientSideDelayPage;
     }
 
     onClickPage(){
-        return this.clickPage
+        return this.clickPage;
     }
 
     onTextInputPage(){
-        return this.textInputPage
+        return this.textInputPage;
     }
 
     onScrollbarsPage(){
-        return this.scrollbarsPage
+        return this.scrollbarsPage;
     }
 
     onDynamicTablePage(){
-        return this.dynamicTablePage
+        return this.dynamicTablePage;
     }
 
     onVerifyTablePage(){
-        return this.verifyTextPage
+        return this.verifyTextPage;
+    }
+
+    onProgressBarPage(){
+        return this.progressBarPage;
+    }
+
+    onVisibilityPage(){
+        return this.visibilityPage;
     }
 
 }
