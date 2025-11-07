@@ -13,6 +13,7 @@ import { DynamicTablePage } from "./dynamicTablePage";
 import { VerifyTextPage } from "./verifyTextPage";
 import { ProgressBarPage } from "./progressBar";
 import { VisibilityPage } from "./visibilityPage";
+import { SampleAppPage } from "./sampleAppPage";
 
 
 export class PageManager{
@@ -32,6 +33,7 @@ export class PageManager{
     private readonly verifyTextPage: VerifyTextPage;
     private readonly progressBarPage: ProgressBarPage;
     private readonly visibilityPage: VisibilityPage; 
+    private readonly sampleAppPage: SampleAppPage;
 
 
     constructor(page:Page){
@@ -51,6 +53,7 @@ export class PageManager{
         this.verifyTextPage = new VerifyTextPage(this.page); 
         this.progressBarPage = new ProgressBarPage(this.page);
         this.visibilityPage = new VisibilityPage(this.page); 
+        this.sampleAppPage = new SampleAppPage(this.page); 
     }
 
     onDynamicIdPage(){
@@ -107,6 +110,10 @@ export class PageManager{
 
     onVisibilityPage(){
         return this.visibilityPage;
+    }
+
+    onSampleAppPage(){
+        return this.sampleAppPage;
     }
 
 }

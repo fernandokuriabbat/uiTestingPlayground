@@ -98,3 +98,10 @@ test('navigate to visibility page, click on hide button and verify that other bu
     await page.waitForURL(/\/visibility$/);
     await pm.onVisibilityPage().pressHideButtonAndAssertThatOtherButtonsAreNotVisible(); 
 })
+
+test('navigate to sample app page, fill the form and have a successfull login', async ({page})  => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToSampleAppPage();
+    await page.waitForURL(/\/sampleapp$/);
+    await pm.onSampleAppPage().fillAndSubmitFormForSuccessfulLogIn('test123');
+})

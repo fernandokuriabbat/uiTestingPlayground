@@ -60,6 +60,10 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Visibility');
     }
 
+    async navigateToSampleAppPage(){
+        await this.selectPageTitleLink('Sample App');
+    }
+
     private async selectPageTitleLink(name: string){
         const pageTitleText = this.page.getByRole('link', {name}).click();
     }
