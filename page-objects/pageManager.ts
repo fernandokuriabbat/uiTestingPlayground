@@ -14,6 +14,7 @@ import { VerifyTextPage } from "./verifyTextPage";
 import { ProgressBarPage } from "./progressBar";
 import { VisibilityPage } from "./visibilityPage";
 import { SampleAppPage } from "./sampleAppPage";
+import { MouseOverPage } from "./mouseOverPage";
 
 
 export class PageManager{
@@ -34,6 +35,7 @@ export class PageManager{
     private readonly progressBarPage: ProgressBarPage;
     private readonly visibilityPage: VisibilityPage; 
     private readonly sampleAppPage: SampleAppPage;
+    private readonly mouseOverPage: MouseOverPage;
 
 
     constructor(page:Page){
@@ -54,6 +56,7 @@ export class PageManager{
         this.progressBarPage = new ProgressBarPage(this.page);
         this.visibilityPage = new VisibilityPage(this.page); 
         this.sampleAppPage = new SampleAppPage(this.page); 
+        this.mouseOverPage = new MouseOverPage(this.page);
     }
 
     onDynamicIdPage(){
@@ -114,6 +117,10 @@ export class PageManager{
 
     onSampleAppPage(){
         return this.sampleAppPage;
+    }
+
+    onMouseOverPage(){
+        return this.mouseOverPage;
     }
 
 }

@@ -64,6 +64,10 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Sample App');
     }
 
+    async navigateToMouseOverPage(){
+        await this.selectPageTitleLink('Mouse Over');
+    }
+
     private async selectPageTitleLink(name: string){
         const pageTitleText = this.page.getByRole('link', {name}).click();
     }
