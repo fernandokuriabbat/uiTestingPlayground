@@ -36,7 +36,7 @@ Quick start (Windows PowerShell)
 1. Clone the repository and enter the folder:
 
 ```powershell
-git clone https://github.com/fernandokuriabbat/uiTestingPlayground.git
+git clone https://github.com/fernandokuriabbat/ui-testing-playground
 cd ui-testing-playground
 ```
 
