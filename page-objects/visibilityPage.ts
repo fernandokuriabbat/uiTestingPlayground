@@ -11,6 +11,7 @@ export class VisibilityPage extends BasePage{
     private readonly visibilityButton: Locator;
     private readonly displayButton: Locator;
     private readonly offscreenButton: Locator;
+    private readonly hidingLayer: Locator; 
 
     constructor(page: Page){
         super(page);
@@ -22,6 +23,7 @@ export class VisibilityPage extends BasePage{
         this.visibilityButton = this.page.getByRole('button', {name: 'Visibility Hidden'});
         this.displayButton = this.page.getByRole('button', {name: 'Display None'});
         this.offscreenButton = this.page.getByRole('button', {name: 'Offscreen'});
+        this.hidingLayer = this.page.locator('#hidingLayer');
     }
 
     async pressHideButtonAndAssertThatOtherButtonsAreNotVisible(){
@@ -41,15 +43,47 @@ export class VisibilityPage extends BasePage{
 
     await this.hideButton.click();
 
-    //aun falla, queda revisar
     await expect(this.removedButton).toBeHidden();
     await expect(this.zeroWidthButton).toBeHidden();
-    await expect(this.overlappedButton).not.toBeVisible();
-    await expect(this.opacityButton).not.toBeVisible();
+    await this.assertOverlappedButtonIsNotVisible(); 
+    await this.assertOpacityButtonIsNotVisible(); 
     await expect(this.visibilityButton).toBeHidden();
     await expect(this.displayButton).toBeHidden();
-    await expect(this.offscreenButton).not.toBeVisible();
-        
+    await this.assertOffscreenButtonIsNotVisible();
+    
     }
+
+    async assertOverlappedButtonIsNotVisible(){
+        await expect(this.hidingLayer).toBeVisible();
+        await expect(this.hidingLayer).toHaveCSS('width', '108px');
+        await expect(this.hidingLayer).toHaveCSS('height', '38px');
+    }
+
+    async assertOpacityButtonIsNotVisible(){
+        await expect(this.opacityButton).toHaveCSS('opacity', '0'); 
+    }
+
+    async assertOffscreenButtonIsNotVisible(){
+        await expect(this.offscreenButton).toHaveClass(/(?:^|\s)offscreen(?:\s|$)/);
+
+        const box = await this.offscreenButton.boundingBox();
+        expect(box).not.toBeNull();
+
+        const viewport = this.page.viewportSize();
+        expect(viewport).not.toBeNull();
+
+        const outside =
+        box!.x + box!.width  <= 0 ||
+        box!.y + box!.height <= 0 ||
+        box!.x >= viewport!.width  ||
+        box!.y >= viewport!.height;
+
+        expect(outside).toBe(true);
+
+    }
+
+
+    
+
 
 }

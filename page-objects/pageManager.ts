@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { DynamicIdPage } from "./dynamicIdPage";
 import { HomePage } from "./homePage";
-import { ClassAttribute } from "./classAttribute";
+import { ClassAttributePage } from "./classAttributePage";
 import { HiddenLayersPage } from "./hiddenLayersPage";
 import { LoadDelayPage } from "./loadDelayPage";
 import { AjaxDataPage } from "./ajaxDataPage";  
@@ -11,7 +11,7 @@ import { TextInputPage } from "./textInputPage";
 import { ScrollbarsPage } from "./scrollbarsPage";
 import { DynamicTablePage } from "./dynamicTablePage";
 import { VerifyTextPage } from "./verifyTextPage";
-import { ProgressBarPage } from "./progressBar";
+import { ProgressBarPage } from "./progressBarPage";
 import { VisibilityPage } from "./visibilityPage";
 import { SampleAppPage } from "./sampleAppPage";
 import { MouseOverPage } from "./mouseOverPage";
@@ -22,7 +22,7 @@ export class PageManager{
     private readonly page: Page;
     private readonly dynamicPage: DynamicIdPage;
     private readonly homePage: HomePage;
-    private readonly classAttributePage: ClassAttribute;
+    private readonly classAttributePage: ClassAttributePage;
     private readonly hiddenLayersPage: HiddenLayersPage; 
     private readonly loadDelayPage: LoadDelayPage; 
     private readonly ajaxDataPage: AjaxDataPage;
@@ -43,7 +43,7 @@ export class PageManager{
         this.dynamicPage = new DynamicIdPage(this.page);
         this.homePage = new HomePage(this.page);
         this.textInputPage = new TextInputPage(this.page);
-        this.classAttributePage = new ClassAttribute(this.page); 
+        this.classAttributePage = new ClassAttributePage(this.page); 
         this.hiddenLayersPage = new HiddenLayersPage(this.page); 
         this.loadDelayPage = new LoadDelayPage(this.page); 
         this.ajaxDataPage = new AjaxDataPage(this.page); 

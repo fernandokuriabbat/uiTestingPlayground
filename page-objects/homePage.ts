@@ -69,7 +69,7 @@ export class HomePage extends BasePage{
     }
 
     private async selectPageTitleLink(name: string){
-        const pageTitleText = this.page.getByRole('link', {name}).click();
+        await this.page.getByRole('link', {name}).click();
     }
 
 }
