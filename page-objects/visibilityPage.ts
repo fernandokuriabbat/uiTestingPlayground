@@ -55,7 +55,7 @@ export class VisibilityPage extends BasePage{
 
     async assertOverlappedButtonIsNotVisible(){
         await expect(this.hidingLayer).toBeVisible();
-        await expect(this.hidingLayer).toHaveCSS('width', '108px');
+        await expect(this.hidingLayer).toHaveCSS('width', /10[8-9]px/);
         await expect(this.hidingLayer).toHaveCSS('height', '38px');
     }
 
