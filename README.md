@@ -112,8 +112,8 @@ Tiny code sample (10–15 lines)
 This small example shows the style used in this repo (POM + web-first assertion):
 
 ```ts
-import { test, expect } from "@playwright/test";
-import { PageManager } from "../page-objects/pageManager";
+import { test, expect } from '@playwright/test';
+import { PageManager } from '../page-objects/pageManager';
 
 test.beforeEach(async({page}) => {
     await page.goto('http://www.uitestingplayground.com/')
@@ -133,8 +133,11 @@ This repository is a learning portfolio demonstrating practical Playwright skill
 Completed scenarios and CI setup are included; the project will be considered finished when the
 remaining 8 scenarios are implemented (target: 23/23).
 
+> **Note:**
+> The “Click” page scenario is intentionally skipped on WebKit (Safari) because the UITestingPlayground demo button is designed to ignore all automated clicks in WebKit. This is a known cross-browser automation limitation and is documented in the test code.
+
 Contact
 -------
-- GitHub: https://github.com/fernandokuriabbat?tab=repositories
+- GitHub: https://github.com/fernandokuriabbat/ui-testing-playground
 
 

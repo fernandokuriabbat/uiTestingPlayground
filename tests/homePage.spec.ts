@@ -48,13 +48,13 @@ test('navigate to client side delay page, click on button to trigger client side
     await pm.onClientSideDelayPage().clickOnButtonAndWaitForClientSideToLoadThenClickGreenLabel(); 
 })
 
-test('navigate to click page and emulate physical click on button', async({page}) => {
+test('navigate to click page and emulate physical click on button', async ({ page, browserName }) => {
+    test.skip(browserName === 'webkit', 'WebKit cannot automate this demo button (anti-automation design)');
     const pm = new PageManager(page);
     await pm.onHomePage().navigateToClickPage();
     await page.waitForURL(/\/click$/);
-    // await page.waitForURL('http://www.uitestingplayground.com/click');
-    await pm.onClickPage().clickOnButtonWithPhysicalMouseClick(); 
-})
+    await pm.onClickPage().clickOnButtonWithPhysicalMouseClick();
+});
 
 test('navigate to text input page, update button name and assert that the name was updated', async ({page}) => {
     const pm = new PageManager(page);
