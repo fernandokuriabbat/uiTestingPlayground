@@ -14,7 +14,7 @@ export class AjaxDataPage extends BasePage{
 
     async clickOnButtonToTriggerAjaxRequestAndWaitForLabelToBeClickable(){
         await this.ajaxRequestButton.click(); 
-        await expect(this.dataLoadedLabel).toBeVisible(); 
+        await expect(this.dataLoadedLabel).toBeVisible({timeout: 20000}); 
         await this.dataLoadedLabel.click();
     }
 }

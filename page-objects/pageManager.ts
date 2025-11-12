@@ -15,10 +15,10 @@ import { ProgressBarPage } from "./progressBarPage";
 import { VisibilityPage } from "./visibilityPage";
 import { SampleAppPage } from "./sampleAppPage";
 import { MouseOverPage } from "./mouseOverPage";
+import { NonBreakingSpacePage } from "./nonBreakingSpacePage";
 
 
 export class PageManager{
-
     private readonly page: Page;
     private readonly dynamicPage: DynamicIdPage;
     private readonly homePage: HomePage;
@@ -36,6 +36,7 @@ export class PageManager{
     private readonly visibilityPage: VisibilityPage; 
     private readonly sampleAppPage: SampleAppPage;
     private readonly mouseOverPage: MouseOverPage;
+    private readonly nonBreakingSpacePage: NonBreakingSpacePage;
 
 
     constructor(page:Page){
@@ -57,6 +58,7 @@ export class PageManager{
         this.visibilityPage = new VisibilityPage(this.page); 
         this.sampleAppPage = new SampleAppPage(this.page); 
         this.mouseOverPage = new MouseOverPage(this.page);
+        this.nonBreakingSpacePage = new NonBreakingSpacePage(this.page);
     }
 
     onDynamicIdPage(){
@@ -121,6 +123,10 @@ export class PageManager{
 
     onMouseOverPage(){
         return this.mouseOverPage;
+    }
+
+    onNonBreakingSpacePage(){
+        return this.nonBreakingSpacePage;
     }
 
 }

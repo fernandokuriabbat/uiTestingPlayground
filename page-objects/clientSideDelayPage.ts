@@ -12,7 +12,7 @@ export class ClientSideDelayPage extends BasePage{
 
     async clickOnButtonAndWaitForClientSideToLoadThenClickGreenLabel(){
         await this.page.getByRole('button', {name: 'Button Triggering Client Side Logic'}).click();
-        await expect(this.dataLoadedLabel).toBeVisible();
+        await expect(this.dataLoadedLabel).toBeVisible({timeout: 20000});
         await this.dataLoadedLabel.click(); 
     }
 

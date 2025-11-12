@@ -8,14 +8,26 @@ export class MouseOverPage extends BasePage{
 
     constructor(page: Page){
         super(page);
-        this.clickMeLink = this.page.getByRole('link', {name: 'Click me'});
-        this.linkButtonLink = this.page.getByRole('link', {name: 'Link Button'});
+        this.clickMeLink = this.page.getByText('Click me');
+        this.linkButtonLink = this.page.getByText('Link Button');
     }
 
-    async clickTwoTimesOnClickMeLick(n = 2){
+    async clickTwoTimesOnClickMeLink(){
         for(let i = 0; i < 2; i++) {
             await this.clickMeLink.click(); 
         }
+
+        const clickCounter = this.page.locator('#clickCount');
+        await expect(clickCounter).toHaveText('2');
+    }
+
+    async clickTwoTimesOnLinkButtonLink(){
+        for(let i = 0; i < 2; i++) {
+            await this.linkButtonLink.click(); 
+        }
+
+        const clickCounter = this.page.locator('#clickButtonCount');
+        await expect(clickCounter).toHaveText('2');
     }
 
 

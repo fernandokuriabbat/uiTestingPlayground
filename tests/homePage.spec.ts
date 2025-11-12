@@ -105,3 +105,18 @@ test('navigate to sample app page, fill the form and have a successfull login', 
     await page.waitForURL(/\/sampleapp$/);
     await pm.onSampleAppPage().fillAndSubmitFormForSuccessfulLogIn('test123');
 })
+
+test('navigate to mouse over page, record 2 consecutive link clicks and assert that click count was increase to 2', async ({page})  => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToMouseOverPage();
+    await page.waitForURL(/\/mouseover$/);
+    await pm.onMouseOverPage().clickTwoTimesOnClickMeLink(); 
+    await pm.onMouseOverPage().clickTwoTimesOnLinkButtonLink(); 
+})
+
+test('navigate to non-breaking space page and click on button', async ({page})  => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToNonBreakingSpacePage();
+    await page.waitForURL(/\/nbsp$/);
+    await pm.onNonBreakingSpacePage().clickOnButton(); 
+})

@@ -68,6 +68,10 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Mouse Over');
     }
 
+    async navigateToNonBreakingSpacePage(){
+        await this.selectPageTitleLink('Non-Breaking Space');
+    }
+
     private async selectPageTitleLink(name: string){
         await this.page.getByRole('link', {name}).click();
     }
