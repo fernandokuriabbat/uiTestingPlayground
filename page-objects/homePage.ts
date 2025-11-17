@@ -72,6 +72,14 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Non-Breaking Space');
     }
 
+    async navigateToOverlappedElementPage(){
+        await this.selectPageTitleLink('Overlapped Element');
+    }
+
+    async navigateToShadowDomPage(){
+        await this.selectPageTitleLink('Shadow DOM');
+    }
+
     private async selectPageTitleLink(name: string){
         await this.page.getByRole('link', {name}).click();
     }

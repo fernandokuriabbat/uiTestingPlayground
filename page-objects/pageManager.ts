@@ -16,6 +16,8 @@ import { VisibilityPage } from "./visibilityPage";
 import { SampleAppPage } from "./sampleAppPage";
 import { MouseOverPage } from "./mouseOverPage";
 import { NonBreakingSpacePage } from "./nonBreakingSpacePage";
+import { OverlappedElementPage } from "./overlappedElementPage";
+import { ShadowDomPage } from "./shadowDomPage";
 
 
 export class PageManager{
@@ -37,6 +39,8 @@ export class PageManager{
     private readonly sampleAppPage: SampleAppPage;
     private readonly mouseOverPage: MouseOverPage;
     private readonly nonBreakingSpacePage: NonBreakingSpacePage;
+    private readonly overlappedElementPage: OverlappedElementPage;
+    private readonly shadowDomPage: ShadowDomPage;
 
 
     constructor(page:Page){
@@ -59,6 +63,8 @@ export class PageManager{
         this.sampleAppPage = new SampleAppPage(this.page); 
         this.mouseOverPage = new MouseOverPage(this.page);
         this.nonBreakingSpacePage = new NonBreakingSpacePage(this.page);
+        this.overlappedElementPage = new OverlappedElementPage(this.page); 
+        this.shadowDomPage = new ShadowDomPage(this.page); 
     }
 
     onDynamicIdPage(){
@@ -127,6 +133,14 @@ export class PageManager{
 
     onNonBreakingSpacePage(){
         return this.nonBreakingSpacePage;
+    }
+
+    onOverlappedElementPage(){
+        return this.overlappedElementPage;
+    }
+
+    onShadowDomPage(){
+        return this.shadowDomPage;
     }
 
 }

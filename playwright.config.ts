@@ -31,6 +31,7 @@ export default defineConfig({
       headless: true,
       trace: 'on-first-retry',
       screenshot: 'only-on-failure',
+      permissions: ['clipboard-read'],
   },
 
   /* Configure projects for major browsers */

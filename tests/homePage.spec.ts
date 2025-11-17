@@ -120,3 +120,17 @@ test('navigate to non-breaking space page and click on button', async ({page})  
     await page.waitForURL(/\/nbsp$/);
     await pm.onNonBreakingSpacePage().clickOnButton(); 
 })
+
+test('navigate to overlapped element page, scroll name field into view and input text', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToOverlappedElementPage();
+    await page.waitForURL(/\/overlapped$/);
+    await pm.onOverlappedElementPage().inputTextIntoNameField('test123');
+})
+
+test('navigate to shadow dom page, generate new guid and compared input field text to clipboard text', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToShadowDomPage();
+    await page.waitForURL(/\/shadowdom$/);
+    await pm.onShadowDomPage().generateNewGuidCopyToClipboardAndCompareValueToInputField(); 
+})
