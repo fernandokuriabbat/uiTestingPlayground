@@ -80,6 +80,10 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Shadow DOM');
     }
 
+    async navigateToAlertsPage(){
+        await this.selectPageTitleLink('Alerts');
+    }
+
     private async selectPageTitleLink(name: string){
         await this.page.getByRole('link', {name}).click();
     }

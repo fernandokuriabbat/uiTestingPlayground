@@ -134,3 +134,12 @@ test('navigate to shadow dom page, generate new guid and compared input field te
     await page.waitForURL(/\/shadowdom$/);
     await pm.onShadowDomPage().generateNewGuidCopyToClipboardAndCompareValueToInputField(); 
 })
+
+test('navigate to alerts page, trigger alert, confirm and prompt buttons and interact with their alerts', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToAlertsPage();
+    await page.waitForURL(/\/alerts$/);
+    await pm.onAlertsPage().triggerAlertButtonAndAssertMessage();
+    await pm.onAlertsPage().triggerConfirmButtonAndAssertMessage();
+    await pm.onAlertsPage().triggerPromptButtonAndAnswerWithNonDefaultValue();
+})

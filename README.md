@@ -1,115 +1,162 @@
-# UI Testing Playground — Playwright POM examples
+# UI Testing Playground — Playwright POM Examples
 
 [![CI](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml/badge.svg)](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml)
 ![Node](https://img.shields.io/badge/node-%E2%89%A520.x-339933?logo=node.js&logoColor=white)
 [![Playwright devDep](https://img.shields.io/github/package-json/dependency-version/fernandokuriabbat/uiTestingPlayground/dev/%40playwright%2Ftest?label=playwright)](https://www.npmjs.com/package/@playwright/test)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-A Playwright + TypeScript test-suite implemented using the Page Object Model (POM) pattern against
-[UITestingPlayground](http://uitestingplayground.com). This repository is a learning / portfolio
-project to demonstrate UI automation skills (locators, assertions, handling overlays/offscreen
-elements, AJAX, delayed loads, progress bars, and more).
+A comprehensive Playwright + TypeScript test suite implemented using the **Page Object Model (POM)** pattern against [UITestingPlayground](http://uitestingplayground.com). This repository is a learning and portfolio project demonstrating practical UI automation skills including locators, assertions, handling overlays/offscreen elements, AJAX, delayed loads, progress bars, dialogs, Shadow DOM, and more.
 
-Status / Milestone
-------------------
-- Playwright: defined in `package.json` (devDependency `@playwright/test`)
-- 23 scenarios planned — 15 implemented (see checklist below)
-- CI: GitHub Actions workflow present at `.github/workflows/playwright.yml` that runs the test suite
+---
 
-Planned scenarios (quick checklist)
-----------------------------------
-| Scenario | Status |
-|---|---:|
-| Total planned | 23 |
-| Implemented | 15 |
-| Remaining | 8 |
+## 🎯 Purpose
 
+This project demonstrates practical UI automation skills using Playwright and TypeScript. It showcases my ability to:
 
-Purpose
--------
-This project documents my practice building stable UI tests using Playwright and POM. It is
-intended as a portfolio piece for a Junior QA Automation role and demonstrates concrete strategies
-for dealing with common UI testing challenges.
+- Write maintainable, scalable test automation code
+- Implement industry-standard design patterns (Page Object Model)
+- Handle complex UI testing scenarios (dynamic content, async operations, cross-browser compatibility)
+- Set up and maintain CI/CD pipelines
+- Write clear, readable, and well-documented test code
 
-Quick start (Windows PowerShell)
---------------------------------
-1. Clone the repository and enter the folder:
+**Perfect for**: Junior QA Automation Engineer positions requiring Playwright/TypeScript experience.
+
+---
+
+## 🛠️ Technologies & Skills Demonstrated
+
+- **Test Framework**: Playwright with TypeScript
+- **Design Pattern**: Page Object Model (POM)
+- **CI/CD**: GitHub Actions
+- **Testing Concepts**:
+  - Web-first assertions and auto-waiting
+  - Cross-browser testing (Chrome, Firefox, Safari)
+  - Handling dynamic content, AJAX, and delays
+  - Dialog/alert handling (alert, confirm, prompt)
+  - Shadow DOM traversal
+  - Element visibility and overlap detection
+  - Clipboard operations
+  - Scroll and viewport management
+
+---
+
+## 📊 Status & Progress
+
+- ✅ **19 out of 23 scenarios completed** (83% complete)
+- Playwright + TypeScript with Page Object Model pattern
+- CI/CD: GitHub Actions workflow with automated test execution
+- Cross-browser testing: Chromium, Firefox, WebKit (Safari)
+- Test coverage: Dynamic elements, AJAX, delays, dialogs, Shadow DOM, and more
+
+### Scenario Checklist
+
+| # | Scenario | Status |
+|---|----------|:------:|
+| 1 | ✅ Dynamic ID | Complete |
+| 2 | ✅ Class Attribute | Complete |
+| 3 | ✅ Hidden Layers | Complete |
+| 4 | ✅ Load Delay | Complete |
+| 5 | ✅ AJAX Data | Complete |
+| 6 | ✅ Client Side Delay | Complete |
+| 7 | ✅ Click | Complete |
+| 8 | ✅ Text Input | Complete |
+| 9 | ✅ Scrollbars | Complete |
+| 10 | ✅ Dynamic Table | Complete |
+| 11 | ✅ Verify Text | Complete |
+| 12 | ✅ Progress Bar | Complete |
+| 13 | ✅ Visibility | Complete |
+| 14 | ✅ Sample App | Complete |
+| 15 | ✅ Mouse Over | Complete |
+| 16 | ✅ Non-Breaking Space | Complete |
+| 17 | ✅ Overlapped Element | Complete |
+| 18 | ✅ Shadow DOM | Complete |
+| 19 | ✅ Alerts | Complete |
+| 20 | ⏳ File Upload | Pending |
+| 21 | ⏳ Animated Button | Pending |
+| 22 | ⏳ Disabled Input | Pending |
+| 23 | ⏳ Auto Wait | Pending |
+| | **Total** | **19/23 (83%)** |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 20.x or higher
+- npm or yarn
+
+### Installation & Setup
+
+1. **Clone the repository and enter the folder:**
 
 ```powershell
-git clone https://github.com/fernandokuriabbat/ui-testing-playground
-cd ui-testing-playground
+git clone https://github.com/fernandokuriabbat/uiTestingPlayground.git
+cd uiTestingPlayground
 ```
 
-2. Install dependencies and Playwright browsers:
+2. **Install dependencies and Playwright browsers:**
 
 ```powershell
 npm ci
 npx playwright install --with-deps
 ```
 
-3. Run the full test suite:
+3. **Run the full test suite:**
 
 ```powershell
 npx playwright test
 ```
 
-4. Run a single spec file or a single test (grep by title):
+4. **Run a single spec file or filter by test name:**
 
 ```powershell
 npx playwright test tests/homePage.spec.ts
 npx playwright test -g "visibility"
 ```
 
-5. Open the HTML report after a run:
+5. **View the HTML report after a run:**
 
 ```powershell
 npx playwright show-report
 ```
 
-Project layout
---------------
-- `playwright.config.ts` — Playwright configuration (projects, timeouts, reporter)
-- `package.json` — devDependencies and metadata
-- `tests/` — test specs (currently `homePage.spec.ts`)
-- `page-objects/` — Page Object Model classes (one per tested page)
-- `fixtures/` — (optional) shared Playwright fixtures
-- `.github/workflows/playwright.yml` — CI workflow
+### Quick Demo
 
-How the code is organized
--------------------------
-- Page Objects follow a consistent pattern: locators (private), constructor(page), public actions,
-	then private helpers.
-- Tests use a `PageManager` to obtain page objects and call their public actions.
-- Prefer Playwright `Locator` APIs and web-first assertions like `toBeVisible`, `toHaveText`,
-	and `toHaveAttribute`. For geometric checks (offscreen/overlap) we use `getBoundingClientRect()`
-	via `locator.evaluate(...)`.
+- **Local execution**: Follow the steps above
+- **CI/CD results**: Check the latest test runs in [GitHub Actions](https://github.com/fernandokuriabbat/uiTestingPlayground/actions)
 
-Best practices used / recommended
----------------------------------
-- Use descriptive page object names: `HomePage`, `VisibilityPage`, `ProgressBarPage`, etc.
-- Keep locators in one place (constructor) and mark them `private readonly`.
-- Favor `expect(locator).toHaveText()` / `toHaveAttribute()` which auto-wait for updates.
-- Use small, deterministic tests that each assert one behavior.
-- Extract common helpers (e.g., `isOffscreen`, `isCovered`) to `BasePage` or `utils/` when shared.
+---
 
-CI
---
-The GitHub Actions workflow runs on push/PR and executes `npx playwright test`, uploading the
-Playwright HTML report as an artifact. See `.github/workflows/playwright.yml` for details.
+## 📁 Project Layout
 
-On CI the workflow uploads the HTML report and (when configured) test traces/screenshots for
-failed tests — check the workflow run artifacts for `playwright-report` and trace files.
+```
+ui-testing-playground/
+├── playwright.config.ts      # Playwright configuration (projects, timeouts, reporter)
+├── package.json              # devDependencies and metadata
+├── tests/                    # Test specs
+│   └── homePage.spec.ts     # Main test file
+├── page-objects/            # Page Object Model classes (one per tested page)
+│   ├── basePage.ts          # Base page with common functionality
+│   ├── pageManager.ts       # Centralized page object manager
+│   └── [PageName]Page.ts    # Individual page objects
+├── fixtures/                # Shared Playwright fixtures
+└── .github/workflows/       # CI workflow
+    └── playwright.yml       # GitHub Actions configuration
+```
 
-How to contribute / extend
---------------------------
-- To add a new page object: create `page-objects/YourPageNamePage.ts` with locators, actions,
-	and helpers.
-- To add a new test: create a spec in `tests/` (consider one file per page/feature for scalability).
-- Keep tests readable and small. Use `PageManager` to access page objects from tests.
+---
 
-Tiny code sample (10–15 lines)
-------------------------------
-This small example shows the style used in this repo (POM + web-first assertion):
+## 💻 How the Code is Organized
+
+- **Page Objects** follow a consistent pattern: locators (private), constructor(page), public actions, then private helpers
+- **Tests** use a `PageManager` to obtain page objects and call their public actions
+- **Assertions** prefer Playwright `Locator` APIs and web-first assertions like `toBeVisible`, `toHaveText`, and `toHaveAttribute`
+- **Geometric checks** (offscreen/overlap) use `getBoundingClientRect()` via `locator.evaluate(...)`
+
+### Code Example
+
+This example demonstrates the style used in this repo (POM + web-first assertion):
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -119,7 +166,7 @@ test.beforeEach(async({page}) => {
     await page.goto('http://www.uitestingplayground.com/')
 })
 
-test ('navigate to dynamic ID page and click on button with dynamic ID', async ({page}) => {
+test('navigate to dynamic ID page and click on button with dynamic ID', async ({page}) => {
     const pm = new PageManager(page);
     await pm.onHomePage().navigateToDynamicIdPage();
     await page.waitForURL(/\/dynamicid$/);
@@ -127,17 +174,85 @@ test ('navigate to dynamic ID page and click on button with dynamic ID', async (
 })
 ```
 
-Notes for the reviewer / hiring manager
--------------------------------------
-This repository is a learning portfolio demonstrating practical Playwright skills and POM design.
-Completed scenarios and CI setup are included; the project will be considered finished when the
-remaining 8 scenarios are implemented (target: 23/23).
+---
 
-> **Note:**
-> The “Click” page scenario is intentionally skipped on WebKit (Safari) because the UITestingPlayground demo button is designed to ignore all automated clicks in WebKit. This is a known cross-browser automation limitation and is documented in the test code.
+## ✨ Best Practices Used
 
-Contact
--------
-- GitHub: https://github.com/fernandokuriabbat/ui-testing-playground
+- ✅ Use descriptive page object names: `HomePage`, `VisibilityPage`, `ProgressBarPage`, etc.
+- ✅ Keep locators in one place (constructor) and mark them `private readonly`
+- ✅ Favor `expect(locator).toHaveText()` / `toHaveAttribute()` which auto-wait for updates
+- ✅ Use small, deterministic tests that each assert one behavior
+- ✅ Extract common helpers (e.g., `isOffscreen`, `isCovered`) to `BasePage` or `utils/` when shared
+- ✅ Follow consistent naming conventions and code structure
 
+---
 
+## 🔄 CI/CD
+
+The GitHub Actions workflow runs on every push and pull request, executing the full test suite across multiple browsers.
+
+**Features:**
+- Automated test execution on push/PR
+- Cross-browser testing (Chromium, Firefox, WebKit)
+- HTML report generation and artifact upload
+- Screenshots and traces for failed tests
+- Retry logic for flaky tests (2 retries on CI)
+
+**View Results:**
+- Check the [Actions tab](https://github.com/fernandokuriabbat/uiTestingPlayground/actions) for latest runs
+- Download `playwright-report` artifact for detailed HTML reports
+- Review trace files for debugging failed tests
+
+---
+
+## 📈 Test Results
+
+- **Total Tests**: 19 scenarios
+- **Browsers Tested**: Chromium, Firefox, WebKit
+- **CI Status**: [![CI](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml/badge.svg)](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml)
+- **Test Execution**: Automated via GitHub Actions on every push/PR
+- **Reports**: HTML reports with screenshots and traces for failed tests
+
+---
+
+## 📝 Notes for Hiring Managers
+
+This repository serves as a **portfolio demonstration** of my Playwright automation skills. Key highlights:
+
+- ✅ **Production-ready code**: Follows Playwright best practices and industry standards
+- ✅ **Maintainable architecture**: Clean Page Object Model implementation
+- ✅ **CI/CD integration**: Fully automated test execution pipeline
+- ✅ **Cross-browser coverage**: Tests run on all major browsers
+- ✅ **Real-world scenarios**: Covers common UI testing challenges (AJAX, delays, dynamic content)
+
+**Known Limitations:**
+- The "Click" scenario is intentionally skipped on WebKit due to anti-automation design in the demo application (documented in test code)
+- 4 remaining scenarios (File Upload, Animated Button, Disabled Input, Auto Wait) are planned for completion
+
+**Next Steps**: Completing the remaining 4 scenarios to achieve 100% coverage of the UI Testing Playground.
+
+---
+
+## 🤝 How to Contribute / Extend
+
+- **To add a new page object**: Create `page-objects/YourPageNamePage.ts` with locators, actions, and helpers
+- **To add a new test**: Create a spec in `tests/` (consider one file per page/feature for scalability)
+- **Best practices**: Keep tests readable and small. Use `PageManager` to access page objects from tests
+
+---
+
+## 📧 Contact & Portfolio
+
+- **GitHub**: [@fernandokuriabbat](https://github.com/fernandokuriabbat)
+- **Repository**: [ui-testing-playground](https://github.com/fernandokuriabbat/uiTestingPlayground)
+- **CI/CD Status**: [GitHub Actions](https://github.com/fernandokuriabbat/uiTestingPlayground/actions)
+
+---
+
+**Looking for opportunities**: Open to Junior QA Automation Engineer roles. This project demonstrates my commitment to learning and applying best practices in test automation.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
