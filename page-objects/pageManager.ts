@@ -19,6 +19,7 @@ import { NonBreakingSpacePage } from "./nonBreakingSpacePage";
 import { OverlappedElementPage } from "./overlappedElementPage";
 import { ShadowDomPage } from "./shadowDomPage";
 import { AlertsPage } from "./alertsPage";
+import { FileUploadPage } from "./fileUploadPage";
 
 
 export class PageManager{
@@ -43,13 +44,13 @@ export class PageManager{
     private readonly overlappedElementPage: OverlappedElementPage;
     private readonly shadowDomPage: ShadowDomPage;
     private readonly alertsPage: AlertsPage;
+    private readonly fileUploadPage: FileUploadPage;
 
 
     constructor(page:Page){
         this.page = page;
         this.dynamicPage = new DynamicIdPage(this.page);
         this.homePage = new HomePage(this.page);
-        this.textInputPage = new TextInputPage(this.page);
         this.classAttributePage = new ClassAttributePage(this.page); 
         this.hiddenLayersPage = new HiddenLayersPage(this.page); 
         this.loadDelayPage = new LoadDelayPage(this.page); 
@@ -68,6 +69,7 @@ export class PageManager{
         this.overlappedElementPage = new OverlappedElementPage(this.page); 
         this.shadowDomPage = new ShadowDomPage(this.page); 
         this.alertsPage = new AlertsPage(this.page);
+        this.fileUploadPage = new FileUploadPage(this.page); 
     }
 
     onDynamicIdPage(){
@@ -148,6 +150,10 @@ export class PageManager{
 
     onAlertsPage(){
         return this.alertsPage;
+    }
+
+    onFileUploadPage(){
+        return this.fileUploadPage;
     }
 
 }

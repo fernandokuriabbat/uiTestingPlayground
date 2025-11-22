@@ -12,4 +12,6 @@ export class BasePage{
         await locator.scrollIntoViewIfNeeded();
         await expect(locator).toBeVisible(); 
     }
+
+    
 }

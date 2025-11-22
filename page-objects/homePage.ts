@@ -84,6 +84,10 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('Alerts');
     }
 
+    async navigateToFileUploadPage(){
+        await this.selectPageTitleLink('File Upload');
+    }
+
     private async selectPageTitleLink(name: string){
         await this.page.getByRole('link', {name}).click();
     }

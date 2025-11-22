@@ -4,13 +4,13 @@ import { BasePage } from "./basePage";
 export class AlertsPage extends BasePage{
 
     private readonly alertButton: Locator;
-    private readonly confirmButon: Locator;
+    private readonly confirmButton: Locator;
     private readonly promptButton: Locator; 
 
     constructor(page: Page){
         super(page);
         this.alertButton = this.page.getByRole('button', {name: "Alert"});
-        this.confirmButon = this.page.getByRole('button', {name: "Confirm"});
+        this.confirmButton = this.page.getByRole('button', {name: "Confirm"});
         this.promptButton = this.page.getByRole('button', {name: "Prompt"});
 
     }
@@ -31,7 +31,7 @@ export class AlertsPage extends BasePage{
 
         const firstDialogPromise = this.page.waitForEvent('dialog');
         
-        this.confirmButon.click();
+        this.confirmButton.click();
         
         const firstDialog = await firstDialogPromise;
         expect(firstDialog.message()).toEqual('Today is Friday.\nDo you agree?');

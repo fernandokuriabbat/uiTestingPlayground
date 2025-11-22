@@ -1,16 +1,34 @@
 {
   "name": "ui-testing-playground",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright + TypeScript test suite using Page Object Model pattern against UITestingPlayground - Portfolio project demonstrating UI automation skills",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fernandokuriabbat/uiTestingPlayground.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "playwright",
+    "typescript",
+    "test-automation",
+    "ui-testing",
+    "page-object-model",
+    "e2e-testing",
+    "qa-automation",
+    "uitestingplayground"
+  ],
+  "author": "Fernando Kuri <fernandokuriabbat@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fernandokuriabbat/uiTestingPlayground/issues"
   },

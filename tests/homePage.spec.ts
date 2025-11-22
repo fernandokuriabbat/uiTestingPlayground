@@ -1,5 +1,6 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { PageManager } from "../page-objects/pageManager";
+import { createTestFile, cleanupTestFiles } from "../utils/fileHelpers";
 
 test.beforeEach(async({page}) => {
     await page.goto('http://www.uitestingplayground.com/')
@@ -30,7 +31,6 @@ test('navigate to load delay page, wait until it is fully loaded and then click 
     const pm = new PageManager(page);
     await pm.onHomePage().navigateToLoadDelayPage();
     await page.waitForURL(/\/loaddelay$/);
-    // await expect(page.getByRole('button', {name: 'Button Appearing After Delay'})).toBeVisible({timeout: 20_000});
     await pm.onLoadDelayPage().clickOnButtonAfterDelay(); 
 })
 
@@ -143,3 +143,24 @@ test('navigate to alerts page, trigger alert, confirm and prompt buttons and int
     await pm.onAlertsPage().triggerConfirmButtonAndAssertMessage();
     await pm.onAlertsPage().triggerPromptButtonAndAnswerWithNonDefaultValue();
 })
+
+test('navigate to file upload page, upload file via browse button and verify', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToFileUploadPage();
+    await page.waitForURL(/\/upload$/);
+    const testFilePath = createTestFile('test-upload.txt', 'This is a test file for upload functionality.');
+    await pm.onFileUploadPage().uploadFileAndVerify(testFilePath, 'browse');
+});
+
+test('navigate to file upload page, upload file via drag and drop and verify', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToFileUploadPage();
+    await page.waitForURL(/\/upload$/);
+    const testFilePath = createTestFile('test-upload-dragdrop.txt', 'This is a test file for drag and drop upload.');
+    await pm.onFileUploadPage().uploadFileAndVerify(testFilePath, 'dragdrop');
+});
+
+
+test.afterAll(async () => {
+    cleanupTestFiles();
+});

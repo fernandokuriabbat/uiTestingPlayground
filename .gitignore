@@ -149,3 +149,6 @@ dist
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Test files (generated during test execution)
+/test-files/

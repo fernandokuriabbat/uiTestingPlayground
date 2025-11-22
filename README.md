@@ -5,7 +5,7 @@
 [![Playwright devDep](https://img.shields.io/github/package-json/dependency-version/fernandokuriabbat/uiTestingPlayground/dev/%40playwright%2Ftest?label=playwright)](https://www.npmjs.com/package/@playwright/test)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-A comprehensive Playwright + TypeScript test suite implemented using the **Page Object Model (POM)** pattern against [UITestingPlayground](http://uitestingplayground.com). This repository is a learning and portfolio project demonstrating practical UI automation skills including locators, assertions, handling overlays/offscreen elements, AJAX, delayed loads, progress bars, dialogs, Shadow DOM, and more.
+A comprehensive Playwright + TypeScript test suite implemented using the **Page Object Model (POM)** pattern against [UITestingPlayground](http://uitestingplayground.com). This repository is a learning and portfolio project demonstrating practical UI automation skills including locators, assertions, handling overlays/offscreen elements, AJAX, delayed loads, progress bars, dialogs, Shadow DOM, file uploads, and more.
 
 ---
 
@@ -37,16 +37,18 @@ This project demonstrates practical UI automation skills using Playwright and Ty
   - Element visibility and overlap detection
   - Clipboard operations
   - Scroll and viewport management
+  - File upload handling (browse and drag-drop)
+  - Iframe interaction
 
 ---
 
 ## 📊 Status & Progress
 
-- ✅ **19 out of 23 scenarios completed** (83% complete)
+- ✅ **20 out of 23 scenarios completed** (87% complete)
 - Playwright + TypeScript with Page Object Model pattern
 - CI/CD: GitHub Actions workflow with automated test execution
 - Cross-browser testing: Chromium, Firefox, WebKit (Safari)
-- Test coverage: Dynamic elements, AJAX, delays, dialogs, Shadow DOM, and more
+- Test coverage: Dynamic elements, AJAX, delays, dialogs, Shadow DOM, file uploads, and more
 
 ### Scenario Checklist
 
@@ -71,11 +73,11 @@ This project demonstrates practical UI automation skills using Playwright and Ty
 | 17 | ✅ Overlapped Element | Complete |
 | 18 | ✅ Shadow DOM | Complete |
 | 19 | ✅ Alerts | Complete |
-| 20 | ⏳ File Upload | Pending |
+| 20 | ✅ File Upload | Complete |
 | 21 | ⏳ Animated Button | Pending |
 | 22 | ⏳ Disabled Input | Pending |
 | 23 | ⏳ Auto Wait | Pending |
-| | **Total** | **19/23 (83%)** |
+| | **Total** | **20/23 (87%)** |
 
 ---
 
@@ -140,7 +142,8 @@ ui-testing-playground/
 │   ├── basePage.ts          # Base page with common functionality
 │   ├── pageManager.ts       # Centralized page object manager
 │   └── [PageName]Page.ts    # Individual page objects
-├── fixtures/                # Shared Playwright fixtures
+├── utils/                   # Utility helper functions
+│   └── fileHelpers.ts       # File creation and cleanup utilities
 └── .github/workflows/       # CI workflow
     └── playwright.yml       # GitHub Actions configuration
 ```
@@ -153,6 +156,7 @@ ui-testing-playground/
 - **Tests** use a `PageManager` to obtain page objects and call their public actions
 - **Assertions** prefer Playwright `Locator` APIs and web-first assertions like `toBeVisible`, `toHaveText`, and `toHaveAttribute`
 - **Geometric checks** (offscreen/overlap) use `getBoundingClientRect()` via `locator.evaluate(...)`
+- **Utility functions** are extracted to `utils/` for reusability across tests
 
 ### Code Example
 
@@ -163,7 +167,7 @@ import { test, expect } from '@playwright/test';
 import { PageManager } from '../page-objects/pageManager';
 
 test.beforeEach(async({page}) => {
-    await page.goto('http://www.uitestingplayground.com/')
+    await page.goto('https://www.uitestingplayground.com/')
 })
 
 test('navigate to dynamic ID page and click on button with dynamic ID', async ({page}) => {
@@ -184,6 +188,7 @@ test('navigate to dynamic ID page and click on button with dynamic ID', async ({
 - ✅ Use small, deterministic tests that each assert one behavior
 - ✅ Extract common helpers (e.g., `isOffscreen`, `isCovered`) to `BasePage` or `utils/` when shared
 - ✅ Follow consistent naming conventions and code structure
+- ✅ Implement proper cleanup in test hooks (e.g., `test.afterAll()`)
 
 ---
 
@@ -207,7 +212,7 @@ The GitHub Actions workflow runs on every push and pull request, executing the f
 
 ## 📈 Test Results
 
-- **Total Tests**: 19 scenarios
+- **Total Tests**: 20 scenarios
 - **Browsers Tested**: Chromium, Firefox, WebKit
 - **CI Status**: [![CI](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml/badge.svg)](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml)
 - **Test Execution**: Automated via GitHub Actions on every push/PR
@@ -223,13 +228,13 @@ This repository serves as a **portfolio demonstration** of my Playwright automat
 - ✅ **Maintainable architecture**: Clean Page Object Model implementation
 - ✅ **CI/CD integration**: Fully automated test execution pipeline
 - ✅ **Cross-browser coverage**: Tests run on all major browsers
-- ✅ **Real-world scenarios**: Covers common UI testing challenges (AJAX, delays, dynamic content)
+- ✅ **Real-world scenarios**: Covers common UI testing challenges (AJAX, delays, dynamic content, file uploads)
 
 **Known Limitations:**
 - The "Click" scenario is intentionally skipped on WebKit due to anti-automation design in the demo application (documented in test code)
-- 4 remaining scenarios (File Upload, Animated Button, Disabled Input, Auto Wait) are planned for completion
+- 3 remaining scenarios (Animated Button, Disabled Input, Auto Wait) are planned for completion
 
-**Next Steps**: Completing the remaining 4 scenarios to achieve 100% coverage of the UI Testing Playground.
+**Next Steps**: Completing the remaining 3 scenarios to achieve 100% coverage of the UI Testing Playground.
 
 ---
 
